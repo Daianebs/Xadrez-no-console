@@ -5,11 +5,20 @@ using xadrez;
 namespace xadrez_console {
     class Program {
         static void Main(string[] args) {
-            Posicaoxadrez pos = new Posicaoxadrez('a', 1);
-            Posicaoxadrez pos2 = new Posicaoxadrez('c', 7);
-            Console.WriteLine(pos);
-            Console.WriteLine(pos.toPosicao());
-            Console.WriteLine(pos2.toPosicao());
+            Tabuleiro tab = new Tabuleiro(8, 8);
+            try {
+                tab.colocarPeca(new Torre(tab, Cor.Preta), new Posicao(0, 0));
+                tab.colocarPeca(new Torre(tab, Cor.Preta), new Posicao(1, 3));
+                tab.colocarPeca(new Rei(tab, Cor.Preta), new Posicao(0, 2));
+                tab.colocarPeca(new Torre(tab, Cor.Branca), new Posicao(3, 5));
+
+
+                Tela.imprimirTabuleiro(tab);
+
+            }
+            catch (TabuleiroException e) {
+                Console.WriteLine(e.Message);
+            }
         }
     }
 }
